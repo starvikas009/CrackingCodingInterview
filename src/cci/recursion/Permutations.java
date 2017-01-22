@@ -11,7 +11,7 @@ public class Permutations {
     public static Set<String> getPerms(String s) {
         if(s == null) return null; /// error condition
         if(s.length() == 0) return new HashSet<String>(Arrays.asList(s));
-        return getPerms(s);
+        return getPermsRecursive(s);
     }
 
     private static Set<String> getPermsRecursive(String s) {
