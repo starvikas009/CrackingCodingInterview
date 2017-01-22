@@ -15,7 +15,9 @@ public class GridPath {
         int N = grid.length;
         if(N == 0 || N == 1) return 0;
 
-        Long[][] pathCountDP = new Long[N][N];
+        if(!grid[N-1][N-1]) return 0;
+
+        Long[][] pathCountDP = new Long[N+1][N+1];
         initDP(grid, pathCountDP);
         computeDP(pathCountDP);
         return pathCountDP[0][0];
@@ -24,28 +26,33 @@ public class GridPath {
     static void computeDP(Long[][] pathCountDP) {
         int N = pathCountDP.length;
 
-        for (int i = N-2; i >= 0; i--) {
-            for (int j = N-2; j >= 0; j--) {
-                if(pathCountDP[i][j] != null) { // off limit already computed.
+        for (int i = N-1; i >= 0; i--) {
+            for (int j = N-1; j >= 0; j--) {
+                if(pathCountDP[i][j] != null) { // off limit or already computed.
                     continue;
                 }
 
                 pathCountDP[i][j] = pathCountDP[i+1][j] + pathCountDP[i][j+1];
             }
         }
+
     }
 
     static void initDP(boolean[][] grid, Long[][] pathCountDP) {
         int N = grid.length;
+        pathCountDP[N-1][N-1] = 1l;
 
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 if(!grid[i][j]) {
                     pathCountDP[i][j] = 0l;
-                } else {
-                    pathCountDP[i][j] = (i == N-1 || j == N-1) ? 1l : null;
                 }
             }
+        }
+
+        for (int i = N; i >= 0; i--) {
+            pathCountDP[i][N] = 0l;
+            pathCountDP[N][i] = 0l;
         }
     }
 }
