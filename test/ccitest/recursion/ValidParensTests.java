@@ -24,4 +24,15 @@ public class ValidParensTests {
         assertTrue(parens.size() == 1);
         assertTrue(parens.contains("()"));
     }
+
+    @Test
+    public void test3() {
+        Set<String> parens = ValidParens.getValidParenCombinations(3);
+        assertTrue(parens.size() == 5);
+        assertTrue(parens.contains("((()))"));
+        assertTrue(parens.contains("(()())"));
+        assertTrue(parens.contains("()()()"));
+        assertTrue(parens.contains("(())()"));
+        assertTrue(parens.contains("()(())"));
+    }
 }

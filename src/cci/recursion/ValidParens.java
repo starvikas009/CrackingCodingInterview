@@ -25,7 +25,7 @@ public class ValidParens {
 
         if(remainingParens > 0) {
             combinations.addAll(
-                    getValidParenCombinations(prefix + "(", openParens, remainingParens-1));
+                    getValidParenCombinations(prefix + "(", openParens + 1, remainingParens-1));
         }
 
         return combinations;
