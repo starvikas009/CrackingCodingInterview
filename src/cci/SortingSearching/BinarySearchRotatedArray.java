@@ -8,11 +8,17 @@ public class BinarySearchRotatedArray {
     public static int search(int a[], int x) {
         if(a == null || a.length == 0) return -1;
 
+        System.out.println("BinarySearchRotatedArray Searching array for: " + x);
         return search(a, 0, a.length -1, x);
     }
 
     public static int search(int a[], int l, int u, int x) {
+        System.out.println("Searching from: " + l + " to :" + u);
         if(l > u) return -1;
+        if(l == u) {
+            if(a[l] == x) return l;
+            return -1;
+        }
 
         int m = (l+u)/2;
         if(a[m] == x) return m;
