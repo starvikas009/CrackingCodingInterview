@@ -8,16 +8,22 @@ package cci.SortingSearching;
  */
 public class BinarySearchInterspersed {
     public static int search(String[] list, String k) {
+        System.out.println("BinarySearchInterspersed: searching for string:" + k);
         return search(list, k, 0, list.length -1);
     }
     
     public static int search(String[] list, String k, int l, int u) {
+        System.out.println("BinarySearchInterspersed: searching in l:" + l + " u:" + u);
+
         if(l > u) return -1;
         
         int m = (l + u)/2;
-        m = findNonEmpty(list, m);
-        if(list[m].equals(k)) return m;
-        
+        m = findNonEmpty(list, m, l , u);
+        if(m < l) {
+            int m2 = (l + u)/2;
+            return search(list, k, m2 + 1, u);
+        }
+
         int cmp = k.compareTo(list[m]);
         if(cmp == 0) {
             return m;
@@ -28,11 +34,21 @@ public class BinarySearchInterspersed {
         }
     }
     
-    public static int findNonEmpty(String[] list, int i) {
-        while (list[i].isEmpty() && i > 0) {
+    public static int findNonEmpty(String[] list, int m, int l, int u) {
+        int i = m;
+        while (list[i].isEmpty() && i > 0 && i >= l) {
             i--;
         }
-        
+
+//        if(i >= l) {
+//            return i;
+//        }
+//
+//        i = m + 1;
+//        while (list[i].isEmpty() && i <= u) {
+//            i++;
+//        }
+
         return i;
     }
 }
