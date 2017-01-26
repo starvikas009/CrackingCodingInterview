@@ -45,7 +45,7 @@ public class StringAnagramSorting {
     public static String stringToNormalizedAnagram(String s) {
         char[] s1 = s.toCharArray();
         Arrays.sort(s1);
-        String a1 = s1.toString();
+        String a1 = new String(s1);
         return a1;
     }
 }
