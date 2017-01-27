@@ -8,6 +8,20 @@ public class BinarySearchMatrix {
     public static boolean containsElement(int[][] mat, int k) {
         if(mat == null || mat.length == 0) return false;
 
+        int i = mat.length -1;
+        int j = 0;
+        for(;i >=0 && j < mat[0].length;) {
+            if(mat[i][j] == k) return true;
+            if(mat[i][j] < k) {
+                j++;
+            } else {
+                i--;
+            }
+        }
+
         return false;
     }
 }
+
+
+
